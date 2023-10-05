@@ -1,0 +1,8 @@
+<-- 2. Gün -->
+Ternary operatörü; if - else gibi þartlý yapýlarýn tek satýr kod bloðuna indirgenmiþ, daha sade ve kýsa yazýlmýþ kod versiyonudur.
+
+int number = -5;
+string result = (number > 0) ? "Pozitif" : "Negatif";
+Console.WriteLine(result); // Bu, "Negatif" yazdýracaktýr.
+
+<-- 3.Gün -->
