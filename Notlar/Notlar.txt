@@ -6,3 +6,33 @@ string result = (number > 0) ? "Pozitif" : "Negatif";
 Console.WriteLine(result); // Bu, "Negatif" yazdýracaktýr.
 
 <-- 3.Gün -->
+C# programlama dilinde "ref" ve "out" anahtar kelimeleri, metodlara parametre olarak deðerlerin nasýl iletilip döndürüleceðini belirlemek için kullanýlýr.
+
+ref Anahtar Kelimesi:
+
+"ref" anahtar kelimesi, bir metoda deðeri referans olarak geçirmek için kullanýlýr. Yani, ref anahtar kelimesi ile belirtilen bir deðiþken, metoda bir referans aracýlýðýyla geçirilir ve metot bu referansý kullanarak deðiþkenin deðerini doðrudan deðiþtirebilir. Bu, deðeri deðiþtirilen deðiþkenin metot dýþýnda da deðiþmiþ olmasýný saðlar.
+
+    void MultiplyByTwo(ref int number)
+    {
+        number *= 2;
+    }
+
+int num = 5;
+MultiplyByTwo(ref num);
+// num þimdi 10 deðerine sahiptir.
+
+out Anahtar Kelimesi:
+
+"out" anahtar kelimesi de "ref" anahtar kelimesine benzer þekilde çalýþýr, ancak "out" anahtar kelimesi ile belirtilen parametre, metot içinde ilk deðeri atanmadan kullanýlabilir. Metot içinde "out" parametresine bir deðer atanmalýdýr, aksi halde derleme hatasý alýrsýnýz.
+
+    void Divide(int dividend, int divisor, out int quotient, out int remainder)
+    {
+        quotient = dividend / divisor;
+        remainder = dividend % divisor;
+    }
+
+int resultQuotient;
+int resultRemainder;
+Divide(10, 3, out resultQuotient, out resultRemainder);
+// resultQuotient þimdi 3 deðerine, resultRemainder 1 deðerine sahiptir.
+Bu anahtar kelimeler, metotlar arasýnda deðerlerin nasýl iletilip alýnacaðýný belirlemek için kullanýlýr ve deðerleri metot dýþýnda deðiþtirmek için kullanýlýrlar.
