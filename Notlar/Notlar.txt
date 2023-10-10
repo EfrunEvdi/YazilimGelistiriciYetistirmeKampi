@@ -36,3 +36,51 @@ int resultRemainder;
 Divide(10, 3, out resultQuotient, out resultRemainder);
 // resultQuotient þimdi 3 deðerine, resultRemainder 1 deðerine sahiptir.
 Bu anahtar kelimeler, metotlar arasýnda deðerlerin nasýl iletilip alýnacaðýný belirlemek için kullanýlýr ve deðerleri metot dýþýnda deðiþtirmek için kullanýlýrlar.
+
+<-- 4.Gün -->
+Stack bellek genellikle yerel deðiþkenler ve fonksiyon çaðrýlarý için kullanýlýr ve hýzlý, sýnýrlý bir bellek alanýna sahiptir. 
+Heap bellek ise dinamik bellek tahsisleri ve referans türleri için kullanýlýr.
+
+Dictionary: System.Collections.Generic adýnda bir namespace içinde bulunur. Key-Value çiftlerini depolamak için kullanýlan bir koleksiyon türüdür. temel iþlevleri arasýnda olanlar ise: 
+- key-value ekleme ve deðiþtirme
+- key-value silme
+- Liste içinde belirli bir key veya value  arama)
+- key veya value ayrý ayrý listeleme. 
+
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        // Dictionary oluþturma
+        Dictionary<string, int> sozluk = new Dictionary<string, int>();
+
+        // Anahtar-deðer çifti ekleme
+        sozluk["Anahtar1"] = 1;
+        sozluk["Anahtar2"] = 2;
+        sozluk["Anahtar3"] = 3;
+
+        // Anahtar ile deðeri alýp yazdýrma
+        Console.WriteLine("Anahtar1: " + sozluk["Anahtar1"]);
+
+        // Dictionary içinde dolaþma
+        foreach (var anahtar in sozluk.Keys)
+        {
+            Console.WriteLine(anahtar + ": " + sozluk[anahtar]);
+        }
+
+        // Belirli bir anahtarý kontrol etme
+        if (sozluk.ContainsKey("Anahtar2"))
+        {
+            Console.WriteLine("Anahtar2 bulundu: " + sozluk["Anahtar2"]);
+        }
+
+        // Anahtar-deðer çiftini silme
+        sozluk.Remove("Anahtar3");
+
+        // Dictionary içindeki eleman sayýsý
+        Console.WriteLine("Eleman Sayýsý: " + sozluk.Count);
+    }
+}
