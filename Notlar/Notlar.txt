@@ -84,3 +84,56 @@ class Program
         Console.WriteLine("Eleman Sayýsý: " + sozluk.Count);
     }
 }
+
+<-- 5.Gün -->
+Abstract sýnýflar, nesne yönelimli programlamada (OOP) kullanýlan bir kavramdýr. Bir programlama dilinde abstract sýnýflar, diðer sýnýflarýn temelini oluþturan ancak doðrudan örneklenemeyen (instance oluþturulamayan) sýnýflardýr. Abstract sýnýflar, genellikle soyut metodlarý içerir; yani, metodlarýn imzalarýný (isim ve parametreler) tanýmlar, ancak metodlarýn tam gövdelerini içermez.
+
+Abstract sýnýflarýn temel amaçlarý þunlardýr:
+
+Kalýtým (Inheritance): Abstract sýnýflar, diðer sýnýflar tarafýndan miras alýnabilir. Bu, alt sýnýflarýn abstract sýnýfýn özelliklerini ve metodlarýný devralabileceði anlamýna gelir. Bu þekilde, ortak özellikleri ve davranýþlarý olan nesneler için bir temel oluþturabiliriz.
+
+Soyut Metodlar (Abstract Methods): Abstract sýnýflar soyut metodlar içerebilir. Soyut metodlar, sadece imzalarýný tanýmlar, yani metodun adýný, parametrelerini ve dönüþ deðerini belirtir, ancak metodun gerçek uygulamasýný içermez. Bu metodlar, abstract sýnýfý miras alan alt sýnýflar tarafýndan gerçek uygulamalarla doldurulmalýdýr.
+
+using System;
+
+// Abstract sýnýf tanýmlama
+abstract class Sekil
+{
+    // Soyut metod tanýmlama
+    public abstract double AlanHesapla();
+}
+
+// Sekil sýnýfýndan türeyen Dikdortgen sýnýfý
+class Dikdortgen : Sekil
+{
+    // AlanHesapla metodunu uygulama (implement)
+    public override double AlanHesapla()
+    {
+        Console.WriteLine("Dikdörtgenin Alaný Hesaplanýyor...");
+        // Dikdörtgenin alaný uzunluk ile geniþlik çarpýmýna eþittir
+        return Uzunluk * Genislik;
+    }
+
+    // Dikdörtgenin uzunluk ve geniþlik özellikleri
+    public double Uzunluk { get; set; }
+    public double Genislik { get; set; }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Dikdörtgen sýnýfýndan bir nesne oluþturulamaz çünkü Sekil abstract sýnýf olduðu için doðrudan örneklenemez
+        // Ancak Dikdortgen sýnýfý, Sekil sýnýfýndan türediði için onu miras alabilir ve soyut metodlarý implement edebilir
+        Dikdortgen dikdortgen = new Dikdortgen();
+        dikdortgen.Uzunluk = 5;
+        dikdortgen.Genislik = 3;
+
+        // AlanHesapla metodunu çaðýrma
+        double alan = dikdortgen.AlanHesapla();
+        Console.WriteLine("Dikdörtgenin Alaný: " + alan);
+
+        Console.ReadLine();
+    }
+}
+Bu örnekte, Sekil adýnda bir abstract sýnýf tanýmlanmýþtýr. Bu sýnýf, soyut bir AlanHesapla metodunu içerir. Dikdortgen sýnýfý, Sekil sýnýfýndan türetilir ve AlanHesapla metodunu uygular. Abstract sýnýflar, türetilen sýnýflarýn ortak özelliklerini ve davranýþlarýný belirlemek için kullanýlýr.
