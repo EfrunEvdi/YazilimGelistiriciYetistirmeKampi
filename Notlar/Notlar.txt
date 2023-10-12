@@ -137,3 +137,18 @@ class Program
     }
 }
 Bu örnekte, Sekil adýnda bir abstract sýnýf tanýmlanmýþtýr. Bu sýnýf, soyut bir AlanHesapla metodunu içerir. Dikdortgen sýnýfý, Sekil sýnýfýndan türetilir ve AlanHesapla metodunu uygular. Abstract sýnýflar, türetilen sýnýflarýn ortak özelliklerini ve davranýþlarýný belirlemek için kullanýlýr.
+
+<-- 6.Gün -->
+
+SELECT 
+    Products.ProductName,
+    SUM(OrderDetails.UnitPrice * OrderDetails.Quantity) AS KazanilanToplamMiktar
+FROM 
+    Products
+JOIN 
+    OrderDetails ON Products.ProductID = OrderDetails.ProductID
+JOIN 
+    Orders ON OrderDetails.OrderID = Orders.OrderID
+GROUP BY 
+    Products.ProductName;
+Bu SQL sorgusu, "Products", "OrderDetails" ve "Orders" tablolarýný birleþtirir. Ürün adýný (ProductName) ve bir üründen elde edilen toplam kazancý hesaplar. "OrderDetails" tablosundaki "UnitPrice" ve "Quantity" alanlarýný çarparak ürün baþýna elde edilen kazancý hesaplar ve sonuçlarý ürün adýna göre gruplar. Gruplandýrýlmýþ toplam kazancý hesaplamak için "SUM" fonksiyonu kullanýlýr.
