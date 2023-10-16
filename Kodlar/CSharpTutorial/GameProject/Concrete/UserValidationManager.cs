@@ -13,7 +13,7 @@ namespace GameProject
                 gamer.LastName == "Çalışkan" &&
                 gamer.IdentityNumber == 123456789)
             {
-                return true; 
+                return true;
             }
             else
             {

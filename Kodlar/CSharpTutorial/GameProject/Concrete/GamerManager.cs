@@ -4,18 +4,20 @@ using System.Text;
 
 namespace GameProject
 {
-    //Hiçbir sınıfı çıplak bırakmayacağız.
-    //(inheritance, implementasyon almıyorsa ilerde sorun yaşarsın)
+    // Hiçbir sınıfı çıplak bırakmayacağız.
+    // (inheritance, implementasyon almıyorsa ilerde sorun yaşarsın)
     public class GamerManager : IGamerService
     {
         IUserValidationService _userValidationService;
-        //GamerManager'ın bir bağımlılığı var. Burada doğrulama servisini kullanacağız demek.
-        //Bu doğrulama servisi kimlik paylaşım sisteminin kendisi değil. Onun soyutu.
-        //Burada UserValidationManager fake yapısı da olabilir. Mernis'de olabilir.
+        // GamerManager'ın bir bağımlılığı var. Burada doğrulama servisini kullanacağız demek.
+        // Bu doğrulama servisi kimlik paylaşım sisteminin kendisi değil. Onun soyutu.
+        // Burada UserValidationManager fake yapısı da olabilir. Mernis'de olabilir.
+
         public GamerManager(IUserValidationService userValidationService)
         {
             _userValidationService = userValidationService;
         }
+
         public void Add(Gamer gamer)
         {
             if (_userValidationService.Validate(gamer))
@@ -24,7 +26,7 @@ namespace GameProject
             }
             else
             {
-                Console.WriteLine("Doğrualama başarısız. Kayıt başarısız.");
+                Console.WriteLine("Doğrulama başarısız. Kayıt başarısız.");
             }
         }
 

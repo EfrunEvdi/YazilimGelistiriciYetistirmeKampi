@@ -5,10 +5,10 @@ using System.Text;
 
 namespace GameProject.Entities
 {
-    public class Game:IEntity
+    public class Game : IEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int  Price { get; set; }
+        public int Price { get; set; }
     }
 }

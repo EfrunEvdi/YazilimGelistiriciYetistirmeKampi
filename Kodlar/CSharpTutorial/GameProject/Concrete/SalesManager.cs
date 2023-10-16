@@ -10,7 +10,7 @@ namespace GameProject.Concrete
     {
         public void Sales(Gamer gamer, Game game, Campaign campaign)
         {
-            int price=game.Price;
+            int price = game.Price;
             if (campaign != null)
             {
                 price = game.Price - campaign.DiscountAmount;
