@@ -35,8 +35,13 @@ namespace Business.Concrete
 
         public List<Product> GetAllByCategory(int categoryId)
         {
-            return _productDal.GetAllByCategory(categoryId);
+            throw new NotImplementedException();
         }
+
+        //public List<Product> GetAllByCategory(int categoryId)
+        //{
+        //    return _productDal.GetAllByCategory(categoryId);
+        //}
 
         public void Update(Product product)
         {
