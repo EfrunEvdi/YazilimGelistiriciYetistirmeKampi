@@ -1,5 +1,4 @@
 ﻿using DataAccess.Abstract;
-using Entities.Abstract;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,12 +10,11 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfProductDal : IProductDal
+    public class EfCarDal : ICarDal
     {
-        public void Add(Product entity)
+        public void Add(Car entity)
         {
-            // IDisposable Pattern Implementation of C#
-            using (NorthwindContext context = new NorthwindContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var addedEntity = context.Entry(entity);
                 addedEntity.State = EntityState.Added;
@@ -24,9 +22,9 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
-        public void Delete(Product entity)
+        public void Delete(Car entity)
         {
-            using (NorthwindContext context = new NorthwindContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var deletedEntity = context.Entry(entity);
                 deletedEntity.State = EntityState.Deleted;
@@ -34,27 +32,27 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
-        public Product Get(Expression<Func<Product, bool>> filter)
+        public Car Get(Expression<Func<Car, bool>> filter = null)
         {
-            using (var context = new NorthwindContext())
+            using (var context = new DatabaseContext())
             {
-                return context.Set<Product>().SingleOrDefault(filter);
+                return context.Set<Car>().SingleOrDefault(filter);
             }
         }
 
-        public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
+        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
         {
-            using (NorthwindContext context = new NorthwindContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return filter == null
-                    ? context.Set<Product>().ToList()
-                    : context.Set<Product>().Where(filter).ToList();
+                    ? context.Set<Car>().ToList()
+                    : context.Set<Car>().Where(filter).ToList();
             }
         }
 
-        public void Update(Product entity)
+        public void Update(Car entity)
         {
-            using (NorthwindContext context = new NorthwindContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var updatedEntity = context.Entry(entity);
                 updatedEntity.State = EntityState.Modified;

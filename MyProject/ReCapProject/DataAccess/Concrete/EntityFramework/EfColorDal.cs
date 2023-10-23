@@ -9,29 +9,29 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCategoryDal : ICategoryDal
+    public class EfColorDal : IColorDal
     {
-        public void Add(Category entity)
+        public void Add(Color entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(Category entity)
+        public void Delete(Color entity)
         {
             throw new NotImplementedException();
         }
 
-        public Category Get(Expression<Func<Category, bool>> filter = null)
+        public Color Get(Expression<Func<Color, bool>> filter = null)
         {
             throw new NotImplementedException();
         }
 
-        public List<Category> GetAll(Expression<Func<Category, bool>> filter = null)
+        public List<Color> GetAll(Expression<Func<Color, bool>> filter = null)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Category entity)
+        public void Update(Color entity)
         {
             throw new NotImplementedException();
         }

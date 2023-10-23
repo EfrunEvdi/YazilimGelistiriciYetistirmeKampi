@@ -1,5 +1,4 @@
 ﻿using Entities.Abstract;
-using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +8,6 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    // Generic Constraint
-    // class : referans tip
-    // IEntity : Ientity olabilir veya IEntity implemente eden bir nesne olabilir.
-    // new() : newlenebilir
     public interface IEntityRepository<T> where T : class, IEntity, new()
     {
         List<T> GetAll(Expression<Func<T, bool>> filter = null);
