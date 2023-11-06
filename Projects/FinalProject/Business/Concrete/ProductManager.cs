@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -14,9 +15,16 @@ namespace Business.Concrete
     {
         IProductDal _productDal;
 
-        public ProductManager(IProductDal productDal)
+        public ProductManager(IProductDal productDal) 
         {
             _productDal = productDal;
+        }
+
+        public IResult Add(Product product)
+        {
+            // business codes
+            _productDal.Add(product);
+            return new Result(true, "Ürün eklendi.");
         }
 
         public List<Product> GetAll()
@@ -29,6 +37,11 @@ namespace Business.Concrete
         public List<Product> GetAllByCategoryId(int categoryId)
         {
             return _productDal.GetAll(p => p.CategoryId == categoryId);
+        }
+
+        public Product GetById(int productId)
+        {
+            return _productDal.Get(x => x.ProductId == productId);
         }
 
         public List<Product> GetByUnitPrice(decimal min, decimal max)
