@@ -1,7 +1,6 @@
-using Business.Abstract;
-using Business.Concrete;
-using DataAccess.Abstract;
-using DataAccess.Concrete.EntityFramework;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Business.DependencyResolvers.Autofac;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,10 +11,21 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+#region Autofac'tan Önce
 // Autofac, Ninject, CastleWindsor, StructureMap, LightInject, DryInject --> IoC Container
 // AOP
-builder.Services.AddSingleton<IProductDal, EfProductDal>();
-builder.Services.AddSingleton<IProductService, ProductManager>();
+// Postsharp
+// builder.Services.AddSingleton<IProductDal, EfProductDal>();
+// builder.Services.AddSingleton<IProductService, ProductManager>();
+#endregion
+
+// Autofac yapýlandýrmasý
+builder.Host
+       .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+       .ConfigureContainer<ContainerBuilder>(builder =>
+       {
+           builder.RegisterModule(new AutofacBusinessModule());
+       });
 
 var app = builder.Build();
 
