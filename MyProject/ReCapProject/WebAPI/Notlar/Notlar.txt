@@ -1,0 +1,19 @@
+﻿HTTP Statü kodları
+
+200 OK: İstek başarıyla gerçekleştirildi ve sunucu başarıyla bir yanıt döndürdü. Bu kod, GET istekleri için genellikle kullanılır.
+
+201 Created: İstek başarıyla gerçekleştirildi ve sunucu yeni bir kaynak oluşturdu. Genellikle POST istekleri sonucunda kullanılır.
+
+301 Moved Permanently: İstenilen kaynak kalıcı olarak başka bir konuma taşındı. Tarayıcılar, gelecekteki istekleri yeni konuma yönlendirmelidir.
+
+400 Bad Request: İstek hatalıdır. Genellikle isteğin yapılandırılmasıyla ilgili sorunlar nedeniyle ortaya çıkar.
+
+401 Unauthorized: İstek için kimlik doğrulama gerekli. Kullanıcı kimliği doğru değil veya eksik olduğunda kullanılır.
+
+403 Forbidden: İstek reddedildi çünkü kaynağa erişim izni yok veya erişim yasaklandı.
+
+404 Not Found: İstenen kaynak bulunamadı. Sunucu, isteğin hedef aldığı kaynağı bulamıyor.
+
+500 Internal Server Error: Sunucu, isteği işlerken bir hata oluştu ve bu nedenle isteği yerine getiremedi.
+
+502 Bad Gateway: Sunucu, başka bir sunucudan alınan geçersiz bir yanıt nedeniyle isteği tamamlayamıyor. Genellikle bir proxy veya ağ sorununu gösterir.
