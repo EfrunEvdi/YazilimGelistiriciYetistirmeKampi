@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.CCS;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -30,8 +31,8 @@ namespace Business.Concrete
         public IResult Add(Product product)
         {
             // Log kodları çalışacak
-            // business codes
-            // Cross Cutting Concerns => Log Cache transaction Authorization
+            // Business Codes
+            // Cross Cutting Concerns => Log Cache Transaction Authorization
 
             #region Validation
             //if (product.UnitPrice <= 0)
@@ -46,7 +47,7 @@ namespace Business.Concrete
             //}
             #endregion
 
-            ValidationTool.Validate(new ProductValidator(), product);
+            // ValidationTool.Validate(new ProductValidator(), product);
 
             _productDal.Add(product);
             return new SuccessResult(Messages.ProductAdded);
