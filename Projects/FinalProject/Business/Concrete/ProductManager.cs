@@ -30,6 +30,17 @@ namespace Business.Concrete
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
+            if (CheckIfProductCountOfCategoryCorrect(product.CategoryId).Success)
+            {
+                if (CheckIfProductNameExist(product.ProductName).Success)
+                {
+                    _productDal.Add(product);
+                    return new SuccessResult(Messages.ProductAdded);
+                }
+            }
+            return new ErrorResult();
+
+
             // Log kodları çalışacak
             // Business Codes
             // Cross Cutting Concerns => Log Cache Transaction Authorization
@@ -49,8 +60,8 @@ namespace Business.Concrete
 
             // ValidationTool.Validate(new ProductValidator(), product);
 
-            _productDal.Add(product);
-            return new SuccessResult(Messages.ProductAdded);
+            //_productDal.Add(product);
+            //return new SuccessResult(Messages.ProductAdded);
         }
 
         public IDataResult<List<Product>> GetAll()
@@ -89,9 +100,45 @@ namespace Business.Concrete
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails());
         }
 
+        [ValidationAspect(typeof(ProductValidator))]
+        public IResult Update(Product product)
+        {
+            throw new NotImplementedException();
+        }
+
         //public List<Product> GetAllByCategory(int categoryId)
         //{
         //    return _productDal.GetAllByCategory(categoryId);
         //}
+
+        private IResult CheckIfProductCountOfCategoryCorrect(int categoryId)
+        {
+            #region Bir kategoride en fazla 10 ürün olabilir
+            // Select Count(*) From Products Where categoryId=1
+            var result = _productDal.GetAll(p => p.CategoryId == categoryId).Count();
+
+            if (result >= 10)
+            {
+                return new ErrorResult(Messages.ProductCountOfCategoryError);
+            }
+
+            return new SuccessResult();
+            #endregion
+        }
+
+        private IResult CheckIfProductNameExist(string productName)
+        {
+            #region Aynı isimli ürün eklenemez
+            // Select Count(*) From Products Where categoryId=1
+            var result = _productDal.GetAll(p => p.ProductName == productName).Any();
+
+            if (result)
+            {
+                return new ErrorResult(Messages.ProductNameAlredyExists);
+            }
+
+            return new SuccessResult();
+            #endregion
+        }
     }
 }

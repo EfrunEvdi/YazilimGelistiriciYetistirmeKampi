@@ -1,1 +1,1 @@
-﻿Core katmanı diğer katmanları refereans almaz.
+﻿Core katmanı diğer katmanları referans almaz.
